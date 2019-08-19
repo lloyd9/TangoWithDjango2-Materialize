@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% comment %} {% load staticfiles %} {% endcomment %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About</title>
+</head>
+<body>
+    <h4>This tutorial has been put together by {{ my_name }}</h4>
+    <img src="/rango{{MEDIA_URL}}cat.jpeg" alt="Cat staring"><br>
+    <a href="/rango/">Home</a>
+</body>
+</html>
