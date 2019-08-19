@@ -13,7 +13,9 @@
         hey there partner! <br>
         <strong>{{ boldmessage }}</strong>
     </div>
+    <!-- Most Liked Categories -->
     {% if categories %}
+    <h3>Most Liked Categories</h3>
     <ul>
         {% for category in categories %}
             <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
@@ -21,6 +23,18 @@
     </ul>
     {% else %}
         <strong>There are no categories present.</strong>
+    {% endif %}
+
+    <!-- Most Viewed Pages -->
+    {% if pages %}
+    <h3>Most Liked Categories</h3>
+    <ul>
+        {% for page in pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>There are no pages present.</strong>
     {% endif %}
     <div>
         <a href="/rango/about/">About</a><br>

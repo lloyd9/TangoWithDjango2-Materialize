@@ -4,12 +4,15 @@ from rango.models import Category, Page
 
 # Create your views here.
 def index(request):
-    # Init context
     # Get top 5 of likes in '-' descending order
     category_list = Category.objects.order_by('-likes')[:5]
+    # Get top 5 most viewed page
+    page_list = Page.objects.order_by('-views')[:5]
+    # Init context
     context_dict = {
         'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!",
-        'categories': category_list
+        'categories': category_list,
+        'pages': page_list
     }
     # Render page
     return render(request,
