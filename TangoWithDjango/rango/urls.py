@@ -3,6 +3,9 @@ from django.conf.urls.static import static
 from django.urls import path
 from rango import views
 
+# Add namespace for URL referencing
+app_name = 'rango'
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),

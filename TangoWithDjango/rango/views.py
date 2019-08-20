@@ -21,6 +21,7 @@ def index(request):
                   context_dict)
                   
 def about(request):
+    print(request.user)
     # Init context
     context_dict = {
         'my_name': 'Lloyd'
