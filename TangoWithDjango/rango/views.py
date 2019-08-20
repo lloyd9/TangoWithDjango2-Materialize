@@ -5,6 +5,9 @@ from rango.forms import CategoryForm, PageForm
 
 # Create your views here.
 def index(request):
+    # Test cookie
+    request.session.set_test_cookie()
+
     # Get top 5 of likes in '-' descending order
     category_list = Category.objects.order_by('-likes')[:5]
     # Get top 5 most viewed page
@@ -21,6 +24,11 @@ def index(request):
                   context_dict)
                   
 def about(request):
+    # Test if cookie is received
+    if request.session.test_cookie_worked():
+        print('TEST COOKIE WORKED!')
+        request.session.delete_test_cookie()
+        
     print(request.user)
     # Init context
     context_dict = {
