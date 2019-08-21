@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
+from datetime import datetime
 
 # Create your views here.
 def index(request):
-    # Test cookie
-    request.session.set_test_cookie()
+    # # Test cookie
+    # request.session.set_test_cookie()
 
     # Get top 5 of likes in '-' descending order
     category_list = Category.objects.order_by('-likes')[:5]
@@ -18,22 +19,30 @@ def index(request):
         'categories': category_list,
         'pages': page_list
     }
-    # Render page
+    
+    # Call the helper functio visitor_cookie_handler
+    visitor_cookie_handler(request)
+    # Update context_dict, add visits
+    context_dict['visits'] = request.session['visits']
+    # Render the template
     return render(request,
                   'rango/index.html',
                   context_dict)
                   
 def about(request):
-    # Test if cookie is received
-    if request.session.test_cookie_worked():
-        print('TEST COOKIE WORKED!')
-        request.session.delete_test_cookie()
-        
-    print(request.user)
+    # # Test if cookie is received
+    # if request.session.test_cookie_worked():
+    #     print('TEST COOKIE WORKED!')
+    #     request.session.delete_test_cookie()
+    # print(request.user)
+
+    # Call the helper functio visitor_cookie_handler
+    visitor_cookie_handler(request)
     # Init context
     context_dict = {
         'my_name': 'Lloyd'
     }
+    context_dict['visits'] = request.session['visits']
     # Render page
     return render(request,
                   'rango/about.html',
@@ -115,3 +124,27 @@ def add_page(request, category_name_slug):
     return render(request,
                   'rango/add_page.html',
                   context_dict)
+
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
+
+def visitor_cookie_handler(request):
+    # Get number of visits (this time in server-side), default 1 if none
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
+    # Get date of last visit
+    last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
+    # Format last visit date
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
+    # Get the days of date today - date of last visit
+    if (datetime.now() - last_visit_time).days > 0:
+        # If days is greater than 1, increment visits then set the last visit to today
+        visits += 1
+        request.session['last_visit'] = str(datetime.now())
+    else:
+        # Else, last visit will not change
+        request.session['last_visit'] = last_visit_cookie
+    # Update or set the number of visits (Since the use of this helper function is just to get the current number of visits)
+    request.session['visits'] = visits

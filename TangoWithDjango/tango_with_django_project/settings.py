@@ -18,6 +18,12 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
+# Set session expire type (default persistent session), to change session expire type:
+# Browser-length session:
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# Change Persistent session expire time (must be in seconds)
+# For better readability and to change it easily, to this:
+# SESSION_COOKIE_AGE = 14 * (24 * 60 * 60) 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
