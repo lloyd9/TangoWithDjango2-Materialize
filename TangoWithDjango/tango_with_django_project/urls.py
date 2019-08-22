@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rango import views
+from registration.backends.simple.views import RegistrationView
+from django.urls import reverse
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return reverse('index')
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('rango/', include('rango.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register')
 ]

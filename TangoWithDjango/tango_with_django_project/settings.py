@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango'
+    'rango',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,21 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# User Authentication using Django-Registration-Redux
+
+# If True, users can register
+REGISTRATION_OPEN = True
+# Activation window time
+ACCOUNT_ACTIVATION_DAYS = 7
+# If True, users will be automatically logged in
+REGISTRATION_AUTO_LOGIN = True
+# Redirection page url when logged in
+LOGIN_REDIRECT_URL = '/rango/'
+# Redirection page url when not logged in
+LOGIN_URL = '/accounts/login/'
+
 
 # Media files
 

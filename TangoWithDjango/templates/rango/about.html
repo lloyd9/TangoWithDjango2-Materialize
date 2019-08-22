@@ -5,7 +5,11 @@
 {% endblock title_block %}
 
 {% block body_block %}
-    <h4>Visits: {{ visits }}</h4>
-    <h4>This tutorial has been put together by {{ my_name }}</h4>
+    {% comment %} <h4>Visits: {{ visits }}</h4> {% endcomment %}
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">This tutorial has been put together by {{ my_name }}</h1>
+        </div>
+    </div>
     <img src="/rango{{MEDIA_URL}}cat.jpeg" alt="Cat staring"><br>
 {% endblock body_block %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category, Page
-from rango.forms import CategoryForm, PageForm
+from rango.forms import CategoryForm, PageForm, UserForm
 from datetime import datetime
 
 # Create your views here.
@@ -148,3 +148,9 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     # Update or set the number of visits (Since the use of this helper function is just to get the current number of visits)
     request.session['visits'] = visits
+
+# def register(request):
+#     user_form = UserForm()
+#     return render(request,
+#                   'registration/registration_form.html',
+#                   {'user_form': user_form})
