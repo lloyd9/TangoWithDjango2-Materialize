@@ -20,7 +20,7 @@ def index(request):
         'pages': page_list
     }
     
-    # Call the helper functio visitor_cookie_handler
+    # Call the helper function visitor_cookie_handler
     visitor_cookie_handler(request)
     # Update context_dict, add visits
     context_dict['visits'] = request.session['visits']
