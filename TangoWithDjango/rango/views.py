@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rango.models import Category, Page
-from rango.forms import CategoryForm, PageForm, UserForm
+from rango.models import Category, Page, UserProfile
+from rango.forms import CategoryForm, PageForm, UserProfileForm
 from datetime import datetime
+from rango.bing_search import run_query, read_bing_key
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -28,7 +34,20 @@ def index(request):
     return render(request,
                   'rango/index.html',
                   context_dict)
-                  
+
+class AboutView(View):
+    def get(self, request):
+        # Call the helper function visitor_cookie_handler
+        visitor_cookie_handler(request)
+        # Init context
+        context_dict = {
+            'my_name': 'Lloyd'
+        }
+        context_dict['visits'] = request.session['visits']
+        return render(request,
+                      'rango/about.html',
+                      context_dict)
+'''             
 def about(request):
     # # Test if cookie is received
     # if request.session.test_cookie_worked():
@@ -47,6 +66,7 @@ def about(request):
     return render(request,
                   'rango/about.html',
                   context_dict)
+'''
 
 def show_category(request, category_name_slug):
     context_dict = {}
@@ -62,10 +82,43 @@ def show_category(request, category_name_slug):
         # Do nothing if not exist, the template will display 'no category' message
         context_dict['category'] = None
         context_dict['pages'] = None
+
+    # Handle POST request from the search field
+    result_list = []
+    curr_query = ''
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        curr_query = query
+        # Check if there's a query
+        if query:
+            result_list = run_query(query)
+            context_dict['result_list'] = result_list
+            context_dict['query'] = curr_query
+
     return render(request,
                   'rango/category.html',
                   context_dict)
 
+class AddCategoryView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        form = CategoryForm()
+        return render(request, 'rango/add_category.html', {'form': form})
+
+    @method_decorator(login_required)
+    def post(self, request):
+        form = CategoryForm()
+        form = CategoryForm(request.POST)
+        # If form is valid, save form then return template
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print(form.errors)
+        return render(request, 'rango/add_category.html', {'form', form})
+
+
+'''
 def add_category(request):
     form = CategoryForm()
 
@@ -88,6 +141,7 @@ def add_category(request):
     return render(request,
                   'rango/add_category.html',
                   context_dict)
+'''
 
 def add_page(request, category_name_slug):
     try:
@@ -148,6 +202,95 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     # Update or set the number of visits (Since the use of this helper function is just to get the current number of visits)
     request.session['visits'] = visits
+
+# def search(request):
+#     result_list = []
+#     # Get the current query, then display it in text/search field
+#     curr_query = ''
+#     if request.method == 'POST':
+#         query = request.POST['query'].strip()
+#         curr_query = query
+#         if query:
+#             # Get result of request
+#             search_res = run_query(query)
+#     # Init context
+#     context_dict = {
+#         'result_list': result_list,
+#         'query': curr_query
+#     }
+
+#     return render(request,
+#                   'rango/search.html',
+#                   context_dict)
+
+def goto_url(request):
+    page_id = None
+    # Redirect url if page is None
+    url = '/rango/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            try:
+                page_id = request.GET['page_id']
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+                print(f'Views incremented, {page.views}. URL, {url}')
+            except:
+                pass
+                print('Page not found')
+        print(f'Redirecting url, {url}')
+    return redirect(url)
+
+@login_required
+def register_profile(request):
+    print('register_profile')
+    form = UserProfileForm()
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+
+            return redirect('index')
+        else:
+            print(form.errors)
+    # Init context
+    context_dict = {'form': form}
+    
+    return render(request,
+                  'rango/profile_registration.html',
+                  context_dict)
+
+class ProfileView(View):
+    def get_user_details(self, username):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return redirect('index')
+
+        userprofile = UserProfile.objects.get_or_create(user=user)[0]
+        form = UserProfileForm({'website': userprofile.website, 'picture': userprofile.picture})
+        return (user, userprofile, form)
+    
+    @method_decorator(login_required)
+    def get(self, request, username):
+        (user, userprofile, form) = self.get_user_details(username)
+        return render(request, 'rango/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
+    @method_decorator(login_required)
+    def post(self, request, username):
+        (user, userprofile, form) = self.get_user_details(username)
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile', user.username)
+        else:
+            print(form.errors)
+        return render(request, 'rango/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
 
 # def register(request):
 #     user_form = UserForm()

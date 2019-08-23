@@ -3,3 +3,6 @@ rangoenv/
 
 # Exclude machine-specific vs code settings
 .vscode/settings.json
+
+# Exclude all keys
+*.key

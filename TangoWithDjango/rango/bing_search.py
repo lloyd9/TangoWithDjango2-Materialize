@@ -35,3 +35,13 @@ def run_query(search_terms):
 			'summary': result['snippet']})
 	
 	return results
+
+def main():
+	query = input()
+	print(f'Search query, {query}')
+	
+	query_res = run_query(query)
+	print(f'Search query result, {json.dumps(query_res, indent=4)}')
+
+if __name__ == '__main__':
+	main()

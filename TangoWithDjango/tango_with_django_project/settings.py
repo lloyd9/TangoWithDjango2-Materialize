@@ -131,7 +131,7 @@ USE_TZ = True
 # If True, users can register
 REGISTRATION_OPEN = True
 # Activation window time
-ACCOUNT_ACTIVATION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 1
 # If True, users will be automatically logged in
 REGISTRATION_AUTO_LOGIN = True
 # Redirection page url when logged in

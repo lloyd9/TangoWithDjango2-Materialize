@@ -14,19 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import path, include
 from rango import views
+from django.urls import reverse, reverse_lazy
 from registration.backends.simple.views import RegistrationView
-from django.urls import reverse
+from django.shortcuts import redirect
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
-        return reverse('index')
+        # print('registration success')
+        return reverse('rango:register_profile')
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('rango/', include('rango.urls')),
     path('admin/', admin.site.urls),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register')
 ]
