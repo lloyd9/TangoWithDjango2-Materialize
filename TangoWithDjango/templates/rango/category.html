@@ -6,41 +6,63 @@
 {% endblock title_block %}
 
 {% block body_block %}
-    {% if user.is_authenticated %}
-        <div>
-            <form class="form-inline" id="user_form" method="post" action="{% url 'rango:show_category' category.slug %}">
-                {% csrf_token %}
-                <div class="form-group pr-2">
-                    <input class="form-control" type="text" size="50" name="query" value="{{ query }}" id="query" placeholder="Search category">
-                </div>
-                <button class="btn btn-primary" type="submit" name="submit" value="Search">
-                    Search
-                </button>
-            </form>
-            <div>
-                {% if result_list %}
-                    <h3>Results</h3>
-                    <div class="list-group">
-                        {% for result in result_list %}
-                            <div class="list-group-item">
-                                <h4 class="list-group-item-heading">
-                                    <a href="{{ result.link }}">{{ result.title|safe|escape }}</a>
-                                </h4>
-                                <p class="list-group-item-text">{{ result.summary|safe|escape }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
     <div>
         {% if category %}
-            <h1>{{ category.name }}</h1>
+            <!-- Category Header -->
+            <div class="jumbotron p-4">
+                <div class="container">
+                    <h1 class="jumbotron-heading">{{ category.name }}</h1>
+                    <div>
+                        <strong class="like_count">{{ category.likes }}</strong> people like this category
+                        {% if user.is_authenticated %}
+                            <button id="likes" data-catid="{{ category.id }}" class="btn btn-primary btn-sm" type="button">
+                                <span data-feather="thumbs-up"></span>
+                                Like
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- If authenticated -->
+            {% if user.is_authenticated %}
+                <div>
+                    <!-- Search bar -->
+                    <form class="form-inline" id="user_form" method="post" action="{% url 'rango:show_category' category.slug %}">
+                        {% csrf_token %}
+                        <div class="form-group pr-2">
+                            <input class="form-control" type="text" size="50" name="query" value="{{ query }}" id="query" placeholder="Search category">
+                        </div>
+                        <button class="btn btn-primary" type="submit" name="submit" value="Search">
+                            Search
+                        </button>
+                    </form>
+                    <!-- Search results -->
+                    <div>
+                        {% if result_list %}
+                            <h3>Results</h3>
+                            <div class="list-group">
+                                {% for result in result_list %}
+                                    <div class="list-group-item">
+                                        <h4 class="list-group-item-heading">
+                                            <a href="{{ result.link }}">{{ result.title|safe|escape }}</a>
+                                        </h4>
+                                        <p class="list-group-item-text">{{ result.summary|safe|escape }}</p>
+                                    </div>
+                                    <button data-catid="{{ category.id }}" data-title="{{ result.title }}" data-url="{{ result.link }}" class="rango-add btn btn-info btn-sm" type="button">
+                                        Add
+                                    </button>
+                                    <br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+            {% endif %}
             {% if pages %}
-                <ul>
+                <ul class="list-group">
                     {% for page in pages %}
-                        <li><a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a></li>
+                        <li class="list-group-item"><a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}

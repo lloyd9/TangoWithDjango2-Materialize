@@ -41,10 +41,69 @@ def populate():
          'views': 20}
     ]
 
+    pascal_pages = [
+        {
+            'title': 'Pascal (programming language)',
+            'url': 'https://en.wikipedia.org/wiki/Pascal_(programming_language)',
+            'views': 1
+        },
+        {
+            'title': 'Pascal Siakam',
+            'url': 'https://en.wikipedia.org/wiki/Pascal_Siakam',
+            'views': 67
+        }
+    ]
+
+    perl_pages = [
+        {
+            'title': 'Perl',
+            'url': 'https://www.perl.org/',
+            'views': 168
+        }
+    ]
+
+    php_pages = [
+        {
+            'title': 'PHP',
+            'url': 'https://www.php.net/',
+            'views': 8
+        }
+    ]
+
+    prolog_pages = [
+        {
+            'title': 'Prolog',
+            'url': 'https://en.wikipedia.org/wiki/Prolog',
+            'views': 38
+        }
+    ]
+
+    postscript_pages = [
+        {
+            'title': 'PostScript',
+            'url': 'https://en.wikipedia.org/wiki/PostScript',
+            'views': 58
+        }
+    ]
+
+    programming_pages = [
+        {
+            'title': 'Programming',
+            'url': 'https://en.wikipedia.org/wiki/Computer_programming',
+            'views': 200
+        }
+    ]
+
     cats = {
         'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
         'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
-        'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16}
+        'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16},
+        'Pascal': {'pages': pascal_pages, 'views': 68, 'likes': 102},
+        'Perl': {'pages': perl_pages, 'views': 168, 'likes': 12},
+        'PHP': {'pages': php_pages, 'views': 8, 'likes': 10},
+        'Prolog': {'pages': prolog_pages, 'views': 38, 'likes': 22},
+        'PostScript': {'pages': postscript_pages, 'views': 58, 'likes': 123},
+        'Programming': {'pages': programming_pages, 'views': 200, 'likes': 196}
     }
 
     # Iterate key and val of cats dict, then add data to page and category
