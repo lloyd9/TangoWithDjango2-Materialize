@@ -1,0 +1,13 @@
+/* .page-content .row {
+    height: 100%;
+} */
+
+.page-content .row #sidebar #cats {
+    height: 100%;
+    overflow: auto;
+}
+
+.page-content .row #sidebar,
+.page-content .row #main-content {
+    height: 100%;
+}

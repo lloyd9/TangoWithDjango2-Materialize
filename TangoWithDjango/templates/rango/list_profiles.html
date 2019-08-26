@@ -7,31 +7,30 @@
 {% endblock title_block %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">
-                User Profiles
-            </h1>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
+    <div class="list-profiles">
+        <h4 class="list-profiles-header">User Profiles</h4>
+        <div class="list-profiles-container col s12">
             {% if userprofile_list %}
-                <div class="panel-heading">
-                    <div class="panel-body">
-                        <div class="list-group">
-                            {% for listuser in userprofile_list %}
-                                <div class="list-group-item">
-                                    <h4 class="list-group-item-heading">
-                                        <a href="{% url 'rango:profile' listuser.user.username %}">
-                                            {{ listuser.user.username }}
-                                        </a>
-                                    </h4>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+                <ul class="collection">
+                    {% for listuser in userprofile_list %}
+                        <li class="collection-item avatar">
+                            {% if listuser.picture %}
+                                <img src="/rango{{ MEDIA_URL }}{{ listuser.picture }}" alt="profile-picture" style="width: 48px; height: 48px;" class="circle">
+                            {% else %}
+                                <img src="/rango{{ MEDIA_URL }}placeholder.png" alt="profile-picture" style="width: 48px; height: 48px;" class="circle">
+                            {% endif %}
+                            <a href="{% url 'rango:profile' listuser.user.username %}" style="padding-top: 10px;">
+                                <strong>{{ listuser.user.username }}</strong>
+                            </a>
+                            <br>
+                            {% if listuser.website %}
+                                <a class="user-website"  style="padding-top: 10px;" href="{{ listuser.website }}" target="_blank">{{ listuser.user.username }}'s website</a>
+                            {% else %}
+                                <a class="user-website"  style="padding-top: 10px;" href="https://www.tangowithdjango.com" target="_blank">{{ listuser.user.username }}'s website</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             {% else %}
                 <p>There are no users for the site.</p>
             {% endif %}

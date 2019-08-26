@@ -1,0 +1,71 @@
+.category {
+    padding: 20px;
+}
+
+.category .category-heading .category-container #delete:hover,
+.category .category-heading .like-container #likes:hover,
+.category .search-container .search-results .collection .collection-item .row .s1 .rango-add i:hover {
+    opacity: 0.7;
+}
+
+/* ----- Category heading ----- */
+
+.category .category-heading .category-container #delete {
+    margin-top: -50px;
+    float: right;
+    background-color: #cc0000;
+}
+
+.category .category-heading .like-container {
+    margin-top: 20px;
+}
+
+.category .category-heading .like-container #likes {
+    margin-top: -40px;
+    float: right;
+}
+
+/* ----- Search bar ----- */
+
+.category .search-container {
+    padding-top: 30px;
+}
+
+.category .search-container #user_form .input-field {
+    background-color: white;
+    border: 1px #dad7d7 solid;
+    width: 60%;
+    height: 75px;
+}
+
+.category .search-container #user_form .input-field i {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.category .search-container #user_form .input-field input,
+.category .search-container #user_form .input-field label {
+    width: 85%;
+    margin-top: 14px;
+    margin-left: 55px;
+}
+
+/* ----- Search results ----- */
+
+.category .search-container .search-results .collection .collection-item .row .s1 .rango-add i {
+    margin-top: 5px;
+    font-size: 36px;
+}
+
+
+/* ----- Category pages ----- */
+
+.category .collection .collection-item .page-views {
+    float: right;
+}
+
+/* ----- Add page button ----- */
+
+.category .add-page {
+    margin: 20px 0 0 3px;
+}

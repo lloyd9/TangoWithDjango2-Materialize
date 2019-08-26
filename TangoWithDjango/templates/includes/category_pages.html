@@ -1,0 +1,18 @@
+{% for page in pages %}
+    {% if page.views > 1 %}
+        <li class="collection-item">
+            <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title|safe }}</a>
+            <span class="page-views dirty-white-color">({{ page.views }} views)</span>
+        </li>
+    {% elif page.views == 1 %}
+        <li class="collection-item">
+            <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title|safe }}</a>
+            <span class="page-views dirty-white-color">({{ page.views }} view)</span>
+        </li>
+    {% else %}
+        <li class="collection-item">
+            <a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title|safe }}</a>
+            <span class="page-views dirty-white-color">(No views yet)</span>
+        </li>
+    {% endif %}
+{% endfor %}

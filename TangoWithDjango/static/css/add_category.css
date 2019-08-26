@@ -1,0 +1,16 @@
+.form-container {
+    width: 60%;
+}
+
+.form-container .add-category-header {
+    padding: 20px;
+}
+
+.form-container .add-category-fields {
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+.form-container .add-category-fields .add-category-btn {
+    margin-top: 30px;
+}

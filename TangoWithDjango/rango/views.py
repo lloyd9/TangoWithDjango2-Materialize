@@ -75,7 +75,7 @@ def show_category(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
         # Return a filtered list of objects or an empty list
         pages = Page.objects.filter(category=category)
-        # Set or append data to context dict
+        # Set or append data to context dict/rango
         context_dict['pages'] = pages
         context_dict['category'] = category
     except Category.DoesNotExist:
@@ -94,7 +94,7 @@ def show_category(request, category_name_slug):
             result_list = run_query(query)
             context_dict['result_list'] = result_list
             context_dict['query'] = curr_query
-
+    # print('Yes' if Page.objects.filter(title='TWICE &quot;YES or YES&quot; M/V - YouTube').exists() else 'No')
     return render(request,
                   'rango/category.html',
                   context_dict)
@@ -115,7 +115,7 @@ class AddCategoryView(View):
             return index(request)
         else:
             print(form.errors)
-        return render(request, 'rango/add_category.html', {'form', form})
+        return render(request, 'rango/add_category.html', {'form': form})
 
 
 '''
@@ -164,7 +164,8 @@ def add_page(request, category_name_slug):
                 page.category = category
                 page.views = 0
                 page.save()
-                return show_category(request, category_name_slug)
+                request.method = 'GET'
+                return redirect('/rango/category/'+category_name_slug)
         else:
             # Return form erors
             print(form.errors)
@@ -246,7 +247,7 @@ def goto_url(request):
 def register_profile(request):
     print('register_profile')
     form = UserProfileForm()
-
+    print(request.user)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -309,8 +310,9 @@ def like_category(request):
         if cat:
             likes = cat.likes + 1
             cat.likes = likes
+            cat.is_liked = True
             cat.save()
-    return HttpResponse(likes)
+    return render(request, 'includes/category-like.html', {'category': cat})
 
 def get_category_list(max_results=0, starts_with=''):
     cat_list = []
@@ -355,7 +357,11 @@ def auto_add_page(request):
             #  Sort pages in specific category in descending order
             pages = Page.objects.filter(category=category).order_by('-views')
             context_dict['pages'] = pages
-    return render(request, 'rango/page_list.html', context_dict)
+    return render(request, 'includes/category_pages.html', context_dict)
+
+# @login_required
+# def delete_category(request):
+#     category = Category.objects.get(slug=category_name_slug)
 
 # def register(request):
 #     user_form = UserForm()

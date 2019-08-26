@@ -21,6 +21,18 @@
                     <form method="post" action="." enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
+                        <!-- File chooser -->
+                        <!-- <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div> -->
+                        <button id="save-changes-btn" class="btn btn-success hide" type="submit" value="Submit">Save changes</button>
+                        <button id="edit-profile-btn" class="btn btn-primary">Edit profile</button>
                     </form>
                 {% else %}
                     <p>

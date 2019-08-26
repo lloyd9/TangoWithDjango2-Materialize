@@ -1,0 +1,23 @@
+.list-profiles .list-profiles-header {
+    padding: 20px;
+}
+
+.list-profiles .list-profiles-container {
+    height: 400px;
+    overflow: auto;
+}
+
+.list-profiles .list-profiles-container ul > li {
+    width: 30%; 
+    margin: 10px; 
+    float: left;
+}
+
+/* TODO: add some margins on top link (username) */
+.list-profiles .list-profiles-container ul > li > img {
+    margin-top: 5px;
+}
+
+.list-profiles .list-profiles-container ul > li > a {
+    margin-top: 100px;
+}

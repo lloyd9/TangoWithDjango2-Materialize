@@ -1,0 +1,18 @@
+.registration-second-step {
+    padding-top: 6%;
+}
+
+.registration-second-step .header {
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.registration-second-step .container .row .col form .input-field {
+    padding-top: 15px;
+}
+
+#submit-second-registration-form {
+    margin: auto;
+    display: block;
+    margin-top: 6%;
+}

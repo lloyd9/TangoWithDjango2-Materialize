@@ -1,0 +1,36 @@
+/* -------------- Fonts -------------- */
+@font-face {
+    font-family: Montserrat;
+    src: url('../fonts/Montserrat-Light.ttf');
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e6e6e6;
+}
+
+/* -------------- Background colors -------------- */
+.dark-blue-bg {
+    background-color: #001a33 !important;
+}
+
+.white-bg {
+    background-color: white !important;
+}
+
+.dirty-white-bg {
+    background-color: #e6e6e6;
+}
+
+/* -------------- Colors -------------- */
+.dirty-white-color {
+    color: #999999;
+}
+
+.light-blue-color {
+    color: #1a75ff;
+}
+
+.dark-blue-color {
+    color: #001a33;
+}

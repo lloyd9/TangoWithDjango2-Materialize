@@ -5,18 +5,30 @@
 {% endblock title_block %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
+    <div class="registration-second-step">
+        <h4 class="header">Registration - Step 2</h4>
         <div class="container">
-            <h1 class="jumbotron-heading">Registration - Step 2</h1>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <form method="post" action="." enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
-            </form>
+            <div class="row">
+                <div class="col s12">
+                    <form method="post" action="." enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="required input-field">
+                            <input id="website" class="validate" name="website" type="url">
+                            <label for="website">Website</label>
+                        </div>
+                        <div class="required file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <button id="submit-second-registration-form" class="btn btn-small waves-effect waves-light" type="submit" value="Submit">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock body_block %}

@@ -6,14 +6,10 @@
 
 {% block body_block %}
     {% comment %} <h4>Visits: {{ visits }}</h4> {% endcomment %}
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">This tutorial has been put together by {{ my_name }}</h1>
-        </div>
-    </div>
-    <img src="/rango{{MEDIA_URL}}cat.jpeg" alt="Cat staring"><br>
+    <h4 class="jumbotron-heading">This tutorial has been put together by {{ my_name }}</h4>
+    <img id="about-img" src="/rango{{MEDIA_URL}}cat.jpeg" alt="Cat staring"><br>
     <p class="hover-me">Hover me!</p>
-    <button class="btn btn-primary" id="about-btn">
+    <a class="waves-effect waves-light btn-small" id="about-btn">
         Click me Onegai *_*
-    </button>
+    </a>
 {% endblock body_block %}

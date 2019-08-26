@@ -1,27 +1,24 @@
-<!-- For sidebar -->
-<ul class='nav flex-column'>
+<!-- Sidebar -->
+<ul>
     {% if cats %}
         {% for c in cats %}
             {% if c == act_cat %}
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'rango:show_category' c.slug %}">
+                <li class="active" style="width: 100%; ">
+                    <a href="{% url 'rango:show_category' c.slug %}" style="color: red;">
                         <span data-feather="archive"></span>
                         {{ c.name }}
                     </a>
-                    {% comment %} <strong><a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a></strong> {% endcomment %}
                 </li>
             {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'rango:show_category' c.slug %}">
+                <li style="width: 100%;">
+                    <a href="{% url 'rango:show_category' c.slug %}">
                         <span data-feather="archive"></span>
                         {{ c.name }}
                     </a>
-                    {% comment %}<a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a>{% endcomment %}
                 </li>
             {% endif %}
         {% endfor %}
     {% else %}
-            <li class="nav-item">No Categories Yet!</li>
-            {% comment %} <li><strong>There are no categories present</strong></li> {% endcomment %}
+            <li style="width: 100%;">No Categories Yet!</li>
     {% endif %}
 </ul>

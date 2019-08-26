@@ -1,0 +1,4 @@
+.index .row .col .collection .collection-item .category-likes,
+.index .row .col .collection .collection-item .page-views {
+    float: right;
+}

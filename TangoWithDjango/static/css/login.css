@@ -1,0 +1,16 @@
+.login {
+    width: 50%;
+}
+
+.login .login-header {
+    padding: 20px;
+}
+
+.login .login-container .form-signin {
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+.login .login-container .form-signin .login-btn {
+    margin-top: 30px;
+}
