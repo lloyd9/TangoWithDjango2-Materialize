@@ -1,3 +1,11 @@
+.index .row .col .collection {
+    padding-top: 30px;
+}
+
+.index .row .col .collection .collection-item  {
+    height: 7vh;
+}
+
 .index .row .col .collection .collection-item .category-likes,
 .index .row .col .collection .collection-item .page-views {
     float: right;

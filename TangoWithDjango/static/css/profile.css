@@ -3,17 +3,40 @@
     padding-top: 10%;
 }
 
+/* ----- Profile picture -----  */
+
 .profile .profile-picture-container {
-    /* width: 1%; */
+    border-right: 2px #9999999f solid;
 }
 
-.profile .profile-info-container {
-    /* width: 20%; */
-    /* float: left; */
+.profile .profile-picture-container img {
+    width: 100%;
+    height: 350px;
 }
+
+/* ----- Profile info -----  */
 
 .profile .profile-info-container .header-username {
-    margin-top: -20px;
-    margin-bottom: 35px;
-    /* color: red; */
+    margin-top: -3%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.profile .profile-info-container form .input-field {
+    margin-top: 40px;
+}
+
+.profile .profile-info-container form #save-changes-btn {
+    background-color: #1565c0;
+}
+
+.profile .profile-info-container form #save-changes-btn:hover {
+    background-color: #1e88e5;
+}
+
+.profile .profile-info-container form #save-changes-btn,
+.profile .profile-info-container form #edit-profile-btn {
+    margin: auto;
+    display: block;
+    margin-top: 40px;
 }

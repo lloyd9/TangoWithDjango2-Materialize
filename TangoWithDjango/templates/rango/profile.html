@@ -8,36 +8,36 @@
 {% block body_block %}
     <div class="profile">
         <!-- <h4 class="header">{{ selecteduser.username }}</h4> -->
-                    <!-- TODO: change design of this templatem, and show placeholder if img not null -->
+                    <!-- TODO: change design of this templatem, and show placeholder if img is null -->
         <div class="col s4 profile-picture-container">
             {% if userprofile.picture %}
-                <img src="/rango{{ MEDIA_URL }}{{ userprofile.picture }}" width="100%" height="250" alt="{{ selecteduser.username }}">
+                <img src="/rango{{ MEDIA_URL }}{{ userprofile.picture }}" alt="{{ selecteduser.username }}">
             {% else %}
-                <img src="/rango{{ MEDIA_URL }}profile-picture-placeholder.jpg" width="100%" height="250" alt="{{ selecteduser.username }}">
+                <img src="/rango{{ MEDIA_URL }}profile-picture-placeholder.jpg" alt="{{ selecteduser.username }}">
             {% endif %}
         </div>
         <br>
         <div class="col s8 profile-info-container">
             {% if selecteduser.username == user.username %}
-                <h4 class="header-username">{{ selecteduser.username }}</h4>
+                <h2 class="header-username">{{ selecteduser.username }}</h2>
                 <form method="post" action="." enctype="multipart/form-data">
                     {% csrf_token %}
                     <!-- {{ form.as_p }} -->
                     <div class="input-field">
-                        <input id="website" type="url" class="validate">
+                        <input disabled id="website" type="url" name="website" class="validate" value="{{ userprofile.website }}">
                         <label for="website">Website</label>
                     </div>
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>File</span>
-                            <input type="file">
+                            <input disabled id="file-btn" type="file">
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                            <input disabled id="file-field" class="file-path validate" type="text" value="{{ userprofile.picture }}">
                         </div>
                     </div>
-                    <button id="save-changes-btn" class="btn waves-effect waves-light" type="submit" value="Submit">Save changes</button>
-                    <!-- <button id="edit-profile-btn" class="btn waves-effect waves-light">Edit profile</button> -->
+                    <button id="save-changes-btn" data-user="{{ selecteduser.username }}" class="btn waves-effect waves-light hide" type="submit" value="Submit">Save changes</button>
+                    <button id="edit-profile-btn" class="btn waves-effect waves-light dark-blue">Edit profile</button>
                 </form>
             {% else %}
                 {% if userprofile.website %}

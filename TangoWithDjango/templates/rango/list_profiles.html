@@ -11,26 +11,30 @@
         <h4 class="list-profiles-header">User Profiles</h4>
         <div class="list-profiles-container col s12">
             {% if userprofile_list %}
-                <ul class="collection">
-                    {% for listuser in userprofile_list %}
-                        <li class="collection-item avatar">
-                            {% if listuser.picture %}
-                                <img src="/rango{{ MEDIA_URL }}{{ listuser.picture }}" alt="profile-picture" style="width: 48px; height: 48px;" class="circle">
-                            {% else %}
-                                <img src="/rango{{ MEDIA_URL }}placeholder.png" alt="profile-picture" style="width: 48px; height: 48px;" class="circle">
-                            {% endif %}
-                            <a href="{% url 'rango:profile' listuser.user.username %}" style="padding-top: 10px;">
-                                <strong>{{ listuser.user.username }}</strong>
-                            </a>
-                            <br>
-                            {% if listuser.website %}
-                                <a class="user-website"  style="padding-top: 10px;" href="{{ listuser.website }}" target="_blank">{{ listuser.user.username }}'s website</a>
-                            {% else %}
-                                <a class="user-website"  style="padding-top: 10px;" href="https://www.tangowithdjango.com" target="_blank">{{ listuser.user.username }}'s website</a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% for listuser in userprofile_list %}
+                    <div class="card-panel">
+                        <div class="row">
+                            <div class="col s3">
+                                {% if listuser.picture %}
+                                    <img src="/rango{{ MEDIA_URL }}{{ listuser.picture }}" alt="profile-picture" class="circle responsive-img">
+                                {% else %}
+                                    <img src="/rango{{ MEDIA_URL }}placeholder.png" alt="profile-picture" class="circle responsive-img">
+                                {% endif %}
+                            </div>
+                            <div class="col s9">
+                                <a id="username" href="{% url 'rango:profile' listuser.user.username %}">
+                                    <strong>{{ listuser.user.username }}</strong>
+                                </a>
+                                <br>
+                                {% if listuser.website %}
+                                    <a class="user-website"  style="margin-top: 30px;" href="{{ listuser.website }}" target="_blank">{{ listuser.user.username }}'s website</a>
+                                {% else %}
+                                    <a class="user-website"  style="margin-top: 20px;" href="https://www.tangowithdjango.com" target="_blank">{{ listuser.user.username }}'s website</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             {% else %}
                 <p>There are no users for the site.</p>
             {% endif %}

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 # Create your views here.
 def index(request):
@@ -272,21 +273,33 @@ class ProfileView(View):
         except User.DoesNotExist:
             return redirect('index')
 
+        website, picture = None, None
         userprofile = UserProfile.objects.get_or_create(user=user)[0]
         form = UserProfileForm({'website': userprofile.website, 'picture': userprofile.picture})
+
+        print(userprofile.website, userprofile.picture)
         return (user, userprofile, form)
     
+    # @csrf_protect
     @method_decorator(login_required)
     def get(self, request, username):
         (user, userprofile, form) = self.get_user_details(username)
         return render(request, 'rango/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
     @method_decorator(login_required)
+    @csrf_protect
     def post(self, request, username):
         (user, userprofile, form) = self.get_user_details(username)
-        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        # Get the attribute manually
+        website = request.GET['website']
+        picture = request.GET['picture']
+        print(website, picture)
+
+        form = UserProfileForm({'website': website, 'picture': picture}, instance=userprofile)
         if form.is_valid():
-            form.save(commit=True)
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
             return redirect('rango:profile', user.username)
         else:
             print(form.errors)

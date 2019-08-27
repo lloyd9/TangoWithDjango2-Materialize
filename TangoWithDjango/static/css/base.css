@@ -1,13 +1,58 @@
-/* .page-content .row {
-    height: 100%;
+/* .page-content {
+    height: 91vh;
 } */
 
-.page-content .row #sidebar #cats {
-    height: 100%;
-    overflow: auto;
+/* ----- Navbar ----- */
+
+nav .nav-wrapper .brand-logo .rango-logo {
+    width: 48px;
+    height: 48px;
+    margin: 7px 0 0 20px;
 }
 
-.page-content .row #sidebar,
-.page-content .row #main-content {
-    height: 100%;
+nav .nav-wrapper ul #dropdown-trigger {
+    padding-right: 10px !important;
+}
+
+nav .nav-wrapper ul #dropdown1 {
+    top: -65px;
+}
+
+/* ----- Page content sidebar ----- */
+
+.page-content .row #sidebar #cats {
+    /* height: 100%; */
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.page-content .row #sidebar #cats .sidenav {
+    position: sticky;
+    top: 65px;
+    height: 550px;
+}
+
+.page-content .row #sidebar #cats .sidenav > li {
+    margin-left: -25px;
+}
+
+/* .page-content .row #sidebar #cats .sidenav > li.active > a,
+.page-content .row #sidebar #cats .sidenav > li.active > a > i  {
+    color: blue;
+} */
+
+/* ----- Sticky Footer ----- */
+
+footer {
+    margin-top: -20px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }

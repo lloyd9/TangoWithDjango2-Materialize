@@ -14,8 +14,20 @@ body {
     background-color: #001a33 !important;
 }
 
+.dark-green-bg {
+    background-color: #012901 !important;
+}
+
+.semi-dark-green-bg {
+    background-color: #003300;
+}
+
+.light-green-bg {
+    background-color: #0b520b;
+}
+
 .white-bg {
-    background-color: white !important;
+    background-color: rgb(241, 236, 236) !important;
 }
 
 .dirty-white-bg {
@@ -23,8 +35,24 @@ body {
 }
 
 /* -------------- Colors -------------- */
+.white-color {
+    color: rgb(241, 236, 236) !important;
+}
+
 .dirty-white-color {
-    color: #999999;
+    color: #999999 !important;
+}
+
+.dark-green-color {
+    color: #012901 !important;
+}
+
+.semi-dark-green-color {
+    color: #003300 !important;
+}
+
+.light-green-color {
+    color: #026e02 !important;
 }
 
 .light-blue-color {

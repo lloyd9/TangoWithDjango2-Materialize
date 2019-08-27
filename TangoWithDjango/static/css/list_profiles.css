@@ -7,17 +7,24 @@
     overflow: auto;
 }
 
-.list-profiles .list-profiles-container ul > li {
+.list-profiles .list-profiles-container .card-panel {
     width: 30%; 
+    height: 80px;
     margin: 10px; 
     float: left;
 }
 
 /* TODO: add some margins on top link (username) */
-.list-profiles .list-profiles-container ul > li > img {
-    margin-top: 5px;
+.list-profiles .list-profiles-container .card-panel > .row > .s3 > img {
+    width: 52px;
+    height: 52px;
 }
 
-.list-profiles .list-profiles-container ul > li > a {
-    margin-top: 100px;
+.list-profiles .list-profiles-container .card-panel > .row > .s3 > img {
+    margin-top: -10px;
+}
+
+.list-profiles .list-profiles-container .card-panel > .row > .s9 {
+    margin-top: -8px;
+    font-size: 16px;
 }

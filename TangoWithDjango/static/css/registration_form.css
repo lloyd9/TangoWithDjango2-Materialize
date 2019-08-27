@@ -3,7 +3,8 @@
 }
 
 .registration-first-step .header {
-    padding-top: 20px;
+    padding: 45px 0;
+    text-align: center;
 }
 
 #submit-first-registration-form {

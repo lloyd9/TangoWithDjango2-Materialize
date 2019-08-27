@@ -9,7 +9,7 @@
     <h6 class="dirty-white-color"><span id="like_count">{{ category.likes|add:"-1" }}</span> people and you like this category</h6>
     {% if user.is_authenticated %}
         <a id="likes" data-catid="{{ category.id }}" data-tooltip="Like" class="disabled btn btn-small waves-effect waves-light tooltipped">
-            <i class="material-icons  light-blue-color">thumb_up</i>
+            <i class="material-icons  light-green-color">thumb_up</i>
         </a>
     {% endif %}
 {% endif %}

@@ -1,16 +1,15 @@
 .form-container {
-    width: 60%;
+    /* width: 60%; */
+    padding-top: 10vh;
 }
 
 .form-container .add-category-header {
-    padding: 20px;
-}
-
-.form-container .add-category-fields {
-    padding-left: 10px;
-    margin-top: 30px;
+    padding-bottom: 9vh;
+    text-align: center;
 }
 
 .form-container .add-category-fields .add-category-btn {
-    margin-top: 30px;
+    margin: auto;
+    display: block;
+    margin-top: 5vh;
 }

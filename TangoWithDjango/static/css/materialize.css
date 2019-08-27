@@ -3760,13 +3760,13 @@ small {
 .btn, .btn-large, .btn-small {
   text-decoration: none;
   color: #fff;
-  background-color: #0e4f83;
+  background-color: #003300;
   text-align: center;
   letter-spacing: .5px;
   transition: background-color .2s ease-out;
   cursor: pointer; }
   .btn:hover, .btn-large:hover, .btn-small:hover {
-    background-color: #105d9a; }
+    background-color: #0c640c; }
 
 .btn-floating {
   display: inline-block;
@@ -4446,8 +4446,8 @@ textarea.materialize-textarea {
   input[type=number]:not(.browser-default):focus:not([readonly]),
   input[type=search]:not(.browser-default):focus:not([readonly]),
   textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #0e4f83;
-    box-shadow: 0 1px 0 0 #0e4f83; }
+    border-bottom: 1px solid #003300;
+    box-shadow: 0 1px 0 0 #003300; }
   input:not([type]):focus:not([readonly]) + label,
   input[type=text]:not(.browser-default):focus:not([readonly]) + label,
   input[type=password]:not(.browser-default):focus:not([readonly]) + label,
@@ -4461,7 +4461,7 @@ textarea.materialize-textarea {
   input[type=number]:not(.browser-default):focus:not([readonly]) + label,
   input[type=search]:not(.browser-default):focus:not([readonly]) + label,
   textarea.materialize-textarea:focus:not([readonly]) + label {
-    color: #0e4f83; }
+    color: #003300; }
   input:not([type]):focus.valid ~ label,
   input[type=text]:not(.browser-default):focus.valid ~ label,
   input[type=password]:not(.browser-default):focus.valid ~ label,
@@ -4743,7 +4743,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
     transition: color .2s;
     top: 0.5rem; }
     .input-field .prefix.active {
-      color: #0e4f83; }
+      color: #003300; }
   .input-field .prefix ~ input,
   .input-field .prefix ~ textarea,
   .input-field .prefix ~ label,

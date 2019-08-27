@@ -1,18 +1,18 @@
 <!-- Sidebar -->
-<ul>
+<ul class="sidenav sidenav-fixed white-bg">
     {% if cats %}
         {% for c in cats %}
             {% if c == act_cat %}
-                <li class="active" style="width: 100%; ">
-                    <a href="{% url 'rango:show_category' c.slug %}" style="color: red;">
-                        <span data-feather="archive"></span>
+                <li class="active">
+                    <a href="{% url 'rango:show_category' c.slug %}" class="light-green-color">
+                        <i class="material-icons light-green-color">archive</i>
                         {{ c.name }}
                     </a>
                 </li>
             {% else %}
                 <li style="width: 100%;">
-                    <a href="{% url 'rango:show_category' c.slug %}">
-                        <span data-feather="archive"></span>
+                    <a href="{% url 'rango:show_category' c.slug %}" class="dark-green-color">
+                        <i class="material-icons dark-green-color">archive</i>
                         {{ c.name }}
                     </a>
                 </li>

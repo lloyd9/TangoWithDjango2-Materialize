@@ -9,7 +9,7 @@
             Rango - {% block title_block %}How to Tango with Django!{% endblock %}
         </title>
         
-        <link rel="icon" href="{% static 'images/favicon.ico' %}">
+        <link rel="icon" href="{% static 'images/rango-icon.png' %}">
         <!-- Materialize CSS -->
         <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
         <!-- CSS files -->
@@ -48,9 +48,11 @@
             {% endif %}
         </ul>
         <!-- Materialize navbar -->
-        <nav>
+        <nav class="semi-dark-green-bg">
             <div class="nav-wrapper">
-                <a href="{% url 'rango:index' %}" class="brand-logo">Rango</a>
+                <a href="{% url 'rango:index' %}" class="brand-logo">
+                    <img class="rango-logo" src="{% static 'images/rango-icon.png' %}" alt="rango-image">
+                </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{% url 'rango:index' %}">Home</a></li>
@@ -59,13 +61,13 @@
                         <li><a href="{% url 'rango:add_category' %}">Add Category</a></li>
                         <!-- Dropdown structure for authenticated -->
                         <ul id="dropdown1" class="dropdown-content">
-                            <li><a href="{% url 'rango:profile' user.username %}">Profile</a></li>
+                            <li style=""><a href="{% url 'rango:profile' user.username %}">Profile</a></li>
                             <li><a href="{% url 'rango:list_profiles' %}">List Profiles</a></li>
                             <li class="divider"></li>
                             <li><a href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
                         </ul>
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li id="dropdown-trigger"><a class="dropdown-trigger" href="#!" data-target="dropdown1">Settings<i class="material-icons right">arrow_drop_down</i></a></li>
                     {% else %}
                         <li><a href="{% url 'registration_register' %}">Register Here</a></li>
                         <li><a href="{% url 'auth_login' %}">Login</a></li>
@@ -100,7 +102,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="page-footer">
+        <footer class="page-footer semi-dark-green-bg">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -117,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright">
+            <div class="footer-copyright dark-green-bg">
                 <div class="container">
                     © 2019 Tango With Django 2 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
                 </div>
