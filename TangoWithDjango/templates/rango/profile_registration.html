@@ -12,11 +12,11 @@
                 <div class="col s12">
                     <form method="post" action="." enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="required input-field">
+                        <div class="input-field">
                             <input id="website" class="validate" name="website" type="url">
                             <label for="website">Website</label>
                         </div>
-                        <div class="required file-field input-field">
+                        <div class="file-field input-field">
                             <div class="btn">
                                 <span>File</span>
                                 <input type="file">

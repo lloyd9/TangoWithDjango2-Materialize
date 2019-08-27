@@ -1,3 +1,13 @@
-/* .registration-first-step { 
-    padding: 20px;
-} */
+.registration-first-step { 
+    padding-top: 10px;
+}
+
+.registration-first-step .header {
+    padding-top: 20px;
+}
+
+#submit-first-registration-form {
+    margin: auto;
+    display: block;
+    margin-top: 30px;
+}

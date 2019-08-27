@@ -1,0 +1,19 @@
+.profile {
+    padding: 0 20px;
+    padding-top: 10%;
+}
+
+.profile .profile-picture-container {
+    /* width: 1%; */
+}
+
+.profile .profile-info-container {
+    /* width: 20%; */
+    /* float: left; */
+}
+
+.profile .profile-info-container .header-username {
+    margin-top: -20px;
+    margin-bottom: 35px;
+    /* color: red; */
+}
